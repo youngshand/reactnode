@@ -13,10 +13,10 @@ const resources = {
   home: {
     handler: HomeHandler
   },
-  pages: {
+  page: {
     handler: PageHandler
   },
-  posts: {
+  post: {
     handler: PostHandler
   }
 };

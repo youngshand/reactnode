@@ -39,10 +39,6 @@ export default async (req, res) => {
 			const store = createStore(reducer, Immutable.fromJS(initialState));
       const favicon = initialState.settings.favicon ? initialState.settings.favicon.url : '';
 
-      console.log('store', store);
-      console.log('favicon', favicon);
-      console.log('renderProps', renderProps);
-
 			try {
 				const content = ReactDOMServer.renderToString(
 					<Provider store={store}>

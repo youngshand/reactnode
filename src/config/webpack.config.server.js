@@ -1,8 +1,8 @@
+/*eslint-disable no-unused-vars*/
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
-console.log(path);
 console.log('Building for environment: ' + process.env.NODE_ENV);
 
 module.exports = {

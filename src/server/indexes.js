@@ -68,7 +68,7 @@ class PathIndex extends Index {
       if (!_.includes(index, `${page.path}`)) {
         index[`${page.path}`] = {
           status: 200,
-          type: page.template
+          type: 'page'
         };
       }
 
@@ -97,8 +97,6 @@ class PathIndex extends Index {
  * building an index.
  */
 const pathIndex = new PathIndex('pathIndex');
-
-console.log('pathIndex', pathIndex)
 
 export { PathIndex };
 export { Index as default, pathIndex };

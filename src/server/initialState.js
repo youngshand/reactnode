@@ -1,6 +1,7 @@
 import Index from './indexes';
 import { ENV } from './config';
 import { settingsCache, pageCache, postCache } from './cache';
+import { pathIndex } from './indexes';
 
 /**
  * initail state defaults build upon the index to make sure non api data
@@ -26,7 +27,8 @@ class InitialStateIndex extends Index {
         // add resource cache
         initialState.settings = await settingsCache.get() || {};
         initialState.pages = await pageCache.get() || [];
-        initialState.posts = await postCache.get();
+        initialState.posts = await postCache.get() || [];
+        initialState.paths = await pathIndex.get() || [];
 
         resolve(initialState);
       } catch (e) {
