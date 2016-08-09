@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "React": false,
+    "react": false,
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-console": 0,
+    "no-underscore-dangle": 1,
+    "quotes": [2, "single"],
+    "react/no-danger": "off",
+  }
+}
