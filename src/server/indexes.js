@@ -77,7 +77,7 @@ class PathIndex extends Index {
     _.forEach(posts, (post) => {
 
       if (!_.includes(index, `${post.path}`)) {
-        index[`/posts/${post.path}`] = {
+        index[`${post.path}`] = {
           status: 200,
           type: 'post'
         };

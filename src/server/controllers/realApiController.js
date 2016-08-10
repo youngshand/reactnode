@@ -16,9 +16,6 @@ const resources = {
   settings: {
     url: `${REAL_API_HOST}${REAL_API_PATHNAME_PREFIX}settings`
   },
-  statusCodes: {
-    url: `${REAL_API_HOST}${REAL_API_PATHNAME_PREFIX}status-codes`
-  },
   pages: {
     url: `${REAL_API_HOST}${REAL_API_PATHNAME_PREFIX}pages`
   },
