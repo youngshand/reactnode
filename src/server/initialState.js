@@ -38,7 +38,7 @@ class InitialStateIndex extends Index {
   }
 
   async build() {
-    return super._save(this.initialState);
+    return super._save(this.initialState); // eslint-disable-line no-underscore-dangle
   }
 
 }

@@ -24,7 +24,7 @@ browserHistory.listen(function(ev) {
 import reducer from '../shared/reducers';
 
 // Grab the state from a global injected into server-generated HTML
-const initialState = window.__INITIAL_STATE__;
+const initialState = window.__INITIAL_STATE__; // eslint-disable-line no-underscore-dangle
 
 // Create Redux store with initial state
 const logger = createLogger();

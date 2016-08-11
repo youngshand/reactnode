@@ -26,10 +26,10 @@ class Index extends Cache {
 
   /**
    * private access to super save function
-   * @param {any} index - The index
+  * @param {any} index - The index
    * @returns {Promise} - A promise which is resolved when the saving has completed
    */
-  _save(index) {
+  _save(index) { // eslint-disable-line no-underscore-dangle
     return super.save(index);
   }
 
@@ -86,7 +86,7 @@ class PathIndex extends Index {
     });
 
     // return the save promise
-    return super._save(index);
+    return super._save(index); // eslint-disable-line no-underscore-dangle
   }
 
 }
