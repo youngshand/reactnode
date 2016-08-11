@@ -53,3 +53,9 @@ img {
 .relative {
   position: relative;
 }
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}

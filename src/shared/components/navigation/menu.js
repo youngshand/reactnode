@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import pick from 'lodash/pick';
 
@@ -9,11 +10,16 @@ class Menu extends React.Component {
   render() {
     return this.props.menu.isOpen ? (
       <div className="menu">
-        <h2>Menu</h2>
+        <h2 className="menu-header">Menu</h2>
+
+        <ul className="menu-items">
+          <li className="menu-item"><Link to="/updating">Updating the framework</Link></li>
+          <li className="menu-item"><Link to="/prototyping">Getting started with prototyping</Link></li>
+          <li className="menu-item"><Link to="/caching">Getting started with cache</Link></li>
+        </ul>
       </div>
     ) : false;
   }
-
 }
 
 Menu.propTypes = {

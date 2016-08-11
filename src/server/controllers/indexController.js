@@ -7,7 +7,7 @@ import Immutable from 'immutable';
 import reducer from '../../shared/reducers';
 import getHead from '../../shared/head';
 import { match, RouterContext } from 'react-router';
-import createLocation from 'history/lib/createLocation';
+import { createMemoryHistory } from 'history';
 import { ENV, DEV_PORT } from '../config';
 import InitialStateIndex from '../initialState';
 import debugCache from '../debug';
@@ -17,13 +17,15 @@ import getStackTrace from '../../shared/utils/getStackTrace';
 
 export default async (req, res) => {
 	const host = req.hostname;
-	const location = createLocation(req.url);
+  const location = createMemoryHistory().createLocation(req.url);
 	const initialStateIndex = new InitialStateIndex('initialState');
 	const ngrok = _.includes(host, 'ngrok');
 
 	const initialState = await initialStateIndex.get();
 
 	match({ routes: getRoutes(initialState), location }, (error, redirectLocation, renderProps) => {
+    initialState.location = location;
+
 		if (error) {
 			res.status(500).send(error.message);
 		} else if (redirectLocation) {

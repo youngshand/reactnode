@@ -41,10 +41,10 @@ class SitemapGenerator {
     let xml = builder.create('urlset').att('xmlns', 'http://www.google.com/schemas/sitemap/0.90');
     _.each(this.routes, (route) => {
       try{
-        let r = xml.ele('url')
-                .ele('loc', this.url + route).up()
-                .ele('changefreq', 'weekly').up()
-                .ele('priority', 0.5)
+        xml.ele('url')
+          .ele('loc', this.url + route).up()
+          .ele('changefreq', 'weekly').up()
+          .ele('priority', 0.5)
       }catch(e){
         console.log(e);
       }
