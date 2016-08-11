@@ -4,7 +4,6 @@ logs
 *.log
 npm-debug.log*
 .DS_Store
-.vscode
 
 # Runtime data
 pids
