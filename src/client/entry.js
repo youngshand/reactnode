@@ -9,6 +9,8 @@ import createLogger from 'redux-logger';
 import Cookies from 'cookies-js';
 import 'babel-polyfill';
 import { pageView } from '../shared/utils/dataLayer';
+import errorHandling from './errorHandling';
+
 
 Cookies.defaults = {
   path: '/'

@@ -4,16 +4,9 @@ import Menu from './components/navigation/menu';
 import Footer from './components/navigation/footer';
 import Header from './components/navigation/header';
 
-import errorHandling from './utils/errorHandling';
 
 // This is the controller view
 class App extends React.Component {
-
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      window.onerror = errorHandling;
-    }
-  }
 
   render() {
     return (
