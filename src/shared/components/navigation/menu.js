@@ -27,7 +27,6 @@ Menu.propTypes = {
  * Returns only the props required for this component to render
  */
 function mapStateToProps(state) {
-  console.log('state', state.toJS());
   return pick(state.toJS(), ['menu']);
 }
 

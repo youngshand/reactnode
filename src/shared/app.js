@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import pick from 'lodash/pick';
+
 import Menu from './components/navigation/menu';
 import Footer from './components/navigation/footer';
 import Header from './components/navigation/header';
@@ -24,9 +26,17 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  location: React.PropTypes.object.isRequired,
   children: React.PropTypes.object.isRequired
 }
 
+/**
+ * Passing all state props to the component can cause excessive re-renders.
+ * Map state to props uses lodash's pick function to select only the parts
+ * of state and pass them to the component.
+ */
+function mapStateToProps(state) {
+  return pick(state.toJS(), ['children']);
+}
+
 // connect app to the redux store
-export default connect(state => state.toJS())(App);
+export default connect(mapStateToProps)(App);
