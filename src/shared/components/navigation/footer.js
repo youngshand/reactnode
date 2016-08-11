@@ -14,7 +14,7 @@ class Footer extends React.Component {
         <a href="https://bitbucket.org/youngshand/react-frontend-2" target="_blank" rel="noopener noreferrer">View this project on bitbucket</a>
 
         <div className="copy">
-          <a href="https://youngshand.com" target="_blank" rel="noopener noreferrer">&copy; Young&amp;Shand</a>
+          <a href="http://youngshand.com" target="_blank" rel="noopener noreferrer">&copy; Young&amp;Shand</a>
         </div>
       </footer>
     );
