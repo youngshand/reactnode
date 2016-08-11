@@ -11,12 +11,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header {...this.props} />
+        <Header />
         <Menu />
         <div id="container">
-          {React.cloneElement(this.props.children, { state: this.state })}
+          {React.cloneElement(this.props.children)}
         </div>
-        <Footer {...this.props} />
+        <Footer />
       </div>
     );
   }

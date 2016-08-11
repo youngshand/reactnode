@@ -12,13 +12,14 @@ import { pageView } from '../shared/utils/dataLayer';
 import errorHandling from './errorHandling';
 
 window.onerror = errorHandling;
+
 Cookies.defaults = {
   path: '/'
 };
 
 // Use the browser history to listen for page directs
 // This will then fire a Virtual PageView found in dataLayer.js
-browserHistory.listen(function(ev) {
+browserHistory.listen((ev) => {
   pageView(ev.pathname);
 });
 
