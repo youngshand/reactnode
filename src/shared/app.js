@@ -9,12 +9,11 @@ import errorHandling from './utils/errorHandling';
 // This is the controller view
 class App extends React.Component {
 
-  componentWillMount() {
-    if(typeof window !== 'undefined'){
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
       window.onerror = errorHandling;
     }
   }
-
 
   render() {
     return (
