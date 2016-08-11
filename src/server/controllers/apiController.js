@@ -63,8 +63,16 @@ class ApiController {
    */
   static async contact(req, res) {
     console.log('apiCon', req)
+    let settings;
     let pathname = req.body.pathname;
-    const settings = await settingsCache.get();
+
+    try {
+      settings = await settingsCache.get();
+    } catch (e) {
+      console.trace(e);
+      throw e;
+    }
+
     // const pages = await pageCache.get();
     const sp = new SparkPost('spark_post_key');
 

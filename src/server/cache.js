@@ -71,9 +71,12 @@ class Cache {
    * @returns {any|undefined} - Returns the object if found or returns undefined
    */
   async find(key, val) {
-    const data = await this.get();
-
-    return _.find(data, (d) => _.result(d, key) === val);
+    try {
+      const data = await this.get();
+      return _.find(data, (d) => _.result(d, key) === val);
+    } catch (e) {
+      throw e;
+    }
   }
 }
 

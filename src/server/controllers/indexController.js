@@ -14,9 +14,8 @@ import debugCache from '../debug';
 import getRoutes from '../../shared/routes';
 import getStackTrace from '../../shared/utils/getStackTrace';
 
-export default async (req, res) => {
-	// let user = req.cookies.user;
 
+export default async (req, res) => {
 	const host = req.hostname;
 	const location = createLocation(req.url);
 	const initialStateIndex = new InitialStateIndex('initialState');
@@ -40,18 +39,22 @@ export default async (req, res) => {
       const favicon = initialState.settings.favicon ? initialState.settings.favicon.url : '';
 
 			try {
+        console.log('RENDERING');
 				const content = ReactDOMServer.renderToString(
 					<Provider store={store}>
 						<RouterContext {...renderProps} />
 					</Provider>
 				);
+        console.log('RENDERED');
 
 				res.status(200).render('index', {
 					host, headContent, content, initialState, ngrok, DEV_PORT, ENV, favicon
 				});
 			} catch (e) {
 
-        console.trace('Error in Index Controller. This probably means you haven\'t handled it properly somewhere else');
+        console.log('TRACE');
+        console.trace(e);
+        // console.trace('Error in Index Controller. This probably means you haven\'t handled it properly somewhere else');
 
         debugCache.save('Failed to complete server side react rendering', e.toString());
 

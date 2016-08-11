@@ -3,6 +3,11 @@
 	box-sizing: border-box;
 }
 
+#container {
+  max-width: 900px;
+  padding: 10px;
+}
+
 .absolute-center {
   position: absolute;
   top: 50%;

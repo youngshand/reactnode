@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Footer from './components/common/footer';
-import Header from './components/common/header';
+import Menu from './components/navigation/menu';
+import Footer from './components/navigation/footer';
+import Header from './components/navigation/header';
 
 // This is the controller view
 class App extends React.Component {
-
-  static propTypes = {
-    location: React.PropTypes.object.isRequired,
-    children: React.PropTypes.object.isRequired
-  }
 
   componentWillMount() {
     if(typeof window !== 'undefined'){
@@ -58,6 +54,7 @@ class App extends React.Component {
     return (
       <div>
         <Header {...this.props} />
+        <Menu />
         <div id="container">
           {React.cloneElement(this.props.children, { state: this.state })}
         </div>
@@ -66,6 +63,11 @@ class App extends React.Component {
     );
   }
 
+}
+
+App.propTypes = {
+  location: React.PropTypes.object.isRequired,
+  children: React.PropTypes.object.isRequired
 }
 
 // connect app to the redux store

@@ -8,7 +8,11 @@ import { pathIndex } from './indexes';
  * has a default configuration.
  */
 const initailStateDefaults = {
-  env: ENV
+  env: ENV,
+
+  menu: {
+    isOpen: false
+  }
 };
 
 
