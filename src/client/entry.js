@@ -11,7 +11,7 @@ import 'babel-polyfill';
 import { pageView } from '../shared/utils/dataLayer';
 import errorHandling from './errorHandling';
 
-
+window.onerror = errorHandling;
 Cookies.defaults = {
   path: '/'
 };
