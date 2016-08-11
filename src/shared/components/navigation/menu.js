@@ -7,7 +7,6 @@ import pick from 'lodash/pick';
 class Menu extends React.Component {
 
   render() {
-    console.log(this.props.menu);
     return this.props.menu.isOpen ? (
       <div className="menu">
         <h2>Menu</h2>
