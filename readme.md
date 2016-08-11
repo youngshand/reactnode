@@ -77,3 +77,4 @@ The webpack server runs on `http://localhost:8080` making hot loading accessible
 to the client app. You shouldn't need to access the webpack server otherwise.
 
 **`npm run deploy`**
+
