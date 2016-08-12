@@ -76,11 +76,7 @@ class InfoHandler extends React.Component {
 
     // The
     if (!content) {
-      return (
-        <div>
-          <p>Loading...</p>
-        </div>
-      );
+      return false;
     } else {
       return (
         <div>
