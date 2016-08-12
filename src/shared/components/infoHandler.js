@@ -10,6 +10,13 @@ import pick from 'lodash/pick';
 
 // use remarkable to parse markdown documents
 const md = new Remarkable();
+
+/**
+ * Snippets are stored on bitbucket https://bitbucket.org/snippets/youngshand/
+ * If you want to add a new info page make sure the route has been added to the routes file
+ * and add the snippet key and file name to this snippets object. The snippet must be
+ * a markdown file so remarkable can render it.
+ */
 const snippets = {
   '/updating': {
     key: '7jM5n',
@@ -25,7 +32,9 @@ const snippets = {
   },
 };
 
-
+/**
+ * The info handler renders info about this react framework.
+ */
 class InfoHandler extends React.Component {
 
   constructor(props) {
@@ -41,7 +50,6 @@ class InfoHandler extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    console.log('UPDATING', nextProps.location.pathname);
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.updateContent(nextProps.location.pathname);
     }
@@ -66,6 +74,7 @@ class InfoHandler extends React.Component {
     const content = this.state.content;
     const snippet = snippets[this.props.location.pathname];
 
+    // The
     if (!content) {
       return (
         <div>
@@ -73,14 +82,12 @@ class InfoHandler extends React.Component {
         </div>
       );
     } else {
-      console.log('CONTENT', content);
-
       return (
         <div>
           <div dangerouslySetInnerHTML={{ __html: md.render(this.state.content) }}>
           </div>
 
-          <p>If you are not satisfied with this document update it on <a href={`https://bitbucket.org/snippets/youngshand/${snippet.key}`}>Bitbucket</a></p>
+          <p>If you want to make updates to this document <a href={`https://bitbucket.org/snippets/youngshand/${snippet.key}`} target="_blank" rel="noopener noreferrer">edit it on Bitbucket</a></p>
         </div>
       );
     }
@@ -96,8 +103,7 @@ InfoHandler.propTypes = {
  * Returns only the props required for this component to render
  */
 function mapStateToProps(state) {
-  console.log('LOC', state.toJS().location);
-  return pick(state.toJS(), ['location']);
+  return pick(state, ['location']);
 }
 
 export default connect(mapStateToProps)(InfoHandler);

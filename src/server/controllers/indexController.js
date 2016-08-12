@@ -3,14 +3,12 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Immutable from 'immutable';
 import reducer from '../../shared/reducers';
 import getHead from '../../shared/head';
 import { match, RouterContext } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { ENV, DEV_PORT } from '../config';
 import InitialStateIndex from '../initialState';
-import debugCache from '../debug';
 import getRoutes from '../../shared/routes';
 import getStackTrace from '../../shared/utils/getStackTrace';
 
@@ -37,28 +35,23 @@ export default async (req, res) => {
 				headContent = getHead(location.pathname, initialState);
 			} catch (e) { console.log(e.toString()) }
 
-			const store = createStore(reducer, Immutable.fromJS(initialState));
+			const store = createStore(reducer, initialState);
       const favicon = initialState.settings.favicon ? initialState.settings.favicon.url : '';
 
 			try {
-        console.log('RENDERING');
 				const content = ReactDOMServer.renderToString(
 					<Provider store={store}>
 						<RouterContext {...renderProps} />
 					</Provider>
 				);
-        console.log('RENDERED');
 
 				res.status(200).render('index', {
 					host, headContent, content, initialState, ngrok, DEV_PORT, ENV, favicon
 				});
 			} catch (e) {
 
-        console.log('TRACE');
+        console.log('SERVER RENDERING ERROR');
         console.trace(e);
-        // console.trace('Error in Index Controller. This probably means you haven\'t handled it properly somewhere else');
-
-        debugCache.save('Failed to complete server side react rendering', e.toString());
 
         const error = {
           status: 500,

@@ -20,6 +20,7 @@ class Menu extends React.Component {
       </div>
     ) : false;
   }
+
 }
 
 Menu.propTypes = {
@@ -32,7 +33,7 @@ Menu.propTypes = {
  * Returns only the props required for this component to render
  */
 function mapStateToProps(state) {
-  return pick(state.toJS(), ['menu']);
+  return pick(state, ['menu']);
 }
 
 export default connect(mapStateToProps)(Menu);

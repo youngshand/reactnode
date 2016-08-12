@@ -13,4 +13,4 @@ class NotFoundHandler extends React.Component {
 
 }
 
-export default connect(state => state.toJS())(NotFoundHandler);
+export default connect(state => state)(NotFoundHandler);
