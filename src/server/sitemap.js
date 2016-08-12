@@ -1,6 +1,6 @@
 import { pageCache, postCache } from './cache';
 import _ from 'lodash';
-// import builder from 'xmlbuilder';
+import builder from 'xmlbuilder';
 
 class SitemapGenerator {
   constructor(){
@@ -38,19 +38,19 @@ class SitemapGenerator {
   }
 
   constructXML() {
-    // let xml = builder.create('urlset').att('xmlns', 'http://www.google.com/schemas/sitemap/0.90');
-    // _.each(this.routes, (route) => {
-    //   try{
-    //     let r = xml.ele('url')
-    //             .ele('loc', this.url + route).up()
-    //             .ele('changefreq', 'weekly').up()
-    //             .ele('priority', 0.5)
-    //   }catch(e){
-    //     console.log(e);
-    //   }
-    // });
-    //
-    // return xml.end({ pretty: true});
+    let xml = builder.create('urlset').att('xmlns', 'http://www.google.com/schemas/sitemap/0.90');
+    _.each(this.routes, (route) => {
+      try{
+        xml.ele('url')
+          .ele('loc', this.url + route).up()
+          .ele('changefreq', 'weekly').up()
+          .ele('priority', 0.5)
+      }catch(e){
+        console.log(e);
+      }
+    });
+
+    return xml.end({ pretty: true});
   }
 }
 export default SitemapGenerator;

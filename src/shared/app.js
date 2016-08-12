@@ -1,72 +1,61 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Footer from './components/common/footer';
-import Header from './components/common/header';
+import { withRouter, routerShape } from 'react-router';
+import pick from 'lodash/pick';
 
-// This is the controller view
+import { navigateTo } from './actions';
+
+import Menu from './components/navigation/menu';
+import Footer from './components/navigation/footer';
+import Header from './components/navigation/header';
+
+
+/**
+ * The main component of the website.
+ * Page handlers are rendered within this component.
+ */
 class App extends React.Component {
 
-  static propTypes = {
-    location: React.PropTypes.object.isRequired,
-    children: React.PropTypes.object.isRequired
-  }
-
-  componentWillMount() {
-    if(typeof window !== 'undefined'){
-      window.onerror = this.errorHandling;
-    }
-  }
-
-  errorHandling(message, file, line, column, errorObject) {
-    column = column || (window.event && window.event.errorCharacter);
-    let stack = errorObject ? errorObject.stack : null;
-
-    if(!stack) {
-        let stack = [];
-        let f = arguments.callee.caller;
-        while (f)
-        {
-            stack.push(f.name);
-            f = f.caller;
-        }
-        errorObject['stack'] = stack;
-    }
-
-    let data = {
-        message:message,
-        file:file,
-        line:line,
-        column:column,
-        errorStack:stack
-    };
-
-    console.error('----------------------');
-    console.error('ERROR CAUGHT IN APP.JS');
-    console.error('----------------------');
-    console.error(`MSG: ${data.message}`);
-    console.error(`IN: ${data.file}#${data.line}:${data.column}`);
-    console.error(data.errorStack)
-    console.error('--------------------');
-    console.error('Original Error Below');
-    console.error('--------------------');
-
-    return false;
-
+  componentDidMount() {
+    // By default the location object is not accessible in the state.
+    // This attaches a listener to the router and detects updates on the location
+    // and passes the new location to the state.
+    this.props.router.listenBefore((location) => {
+      this.props.dispatch(navigateTo(location));
+    });
   }
 
   render() {
     return (
       <div>
-        <Header {...this.props} />
+        <Header />
+        <Menu />
         <div id="container">
-          {React.cloneElement(this.props.children, { state: this.state })}
+          {React.cloneElement(this.props.children)}
         </div>
-        <Footer {...this.props} />
+        <Footer />
       </div>
     );
   }
 
 }
 
-// connect app to the redux store
-export default connect(state => state.toJS())(App);
+App.propTypes = {
+  router: routerShape.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired
+}
+
+/**
+ * Passing all state props to the component can cause excessive re-renders.
+ * Map state to props uses lodash's pick function to select only the parts
+ * of state and pass them to the component.
+ * http://lodash.com/docs#pick
+ */
+function mapStateToProps(state) {
+  return pick(state.toJS(), ['router', 'dispatch', 'children']);
+}
+
+// Make the react router avaliable to the app.
+// Connect app to the redux store.
+export default withRouter(connect(mapStateToProps)(App));

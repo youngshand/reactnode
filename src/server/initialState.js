@@ -8,7 +8,11 @@ import { pathIndex } from './indexes';
  * has a default configuration.
  */
 const initailStateDefaults = {
-  env: ENV
+  env: ENV,
+
+  menu: {
+    isOpen: false
+  }
 };
 
 
@@ -37,7 +41,7 @@ class InitialStateIndex extends Index {
     });
   }
 
-  async build() {
+  build() {
     return super._save(this.initialState); // eslint-disable-line no-underscore-dangle
   }
 

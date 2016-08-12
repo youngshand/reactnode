@@ -98,7 +98,7 @@ class ApiUpdaterController {
       } catch (e) {
         // an error occured when parsing the endpoint json.
         // skip updating the cache
-        debugCache.save('Failed parse json', JSON.stringify(e));
+        debugCache.save('Failed parse json', JSON.stringify(e), e);
 
         error = e;
       }
@@ -129,7 +129,7 @@ class ApiUpdaterController {
         await pathIndex.build();
 
         res.status(200).send(`Cache updated using the ${DEFAULT_SOURCE_API} api.`);
-      } catch (e) { console.error(e); }
+      } catch (e) { console.trace(e); }
     }
   }
 
@@ -150,6 +150,7 @@ class ApiUpdaterController {
       await sitesConfigIndex.build(siteConfig);
       res.status(200).send();
     } catch (e) {
+      console.trace(e);
       res.status(400).send(e.toString());
     }
   }

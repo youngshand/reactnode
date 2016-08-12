@@ -7,6 +7,14 @@ import { constants } from './actions';
  */
 function reducer(state, action) {
   switch (action.type) {
+    case constants.OPEN_MENU:
+      return state.setIn(['menu', 'isOpen'], true);
+    case constants.CLOSE_MENU:
+      return state.setIn(['menu', 'isOpen'], false);
+    case constants.TOGGLE_MENU:
+      return state.setIn(['menu', 'isOpen'], !state.get('menu').get('isOpen'));
+    case constants.NAVIGATE_TO:
+      return state.set('location', action.location);
     case constants.SET_PREV_PAGE:
       return state.mergeDeep({
         prevPage: {

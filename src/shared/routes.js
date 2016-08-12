@@ -1,9 +1,15 @@
-import _ from 'lodash';
+import has from 'lodash/has';
+import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 
 import { IndexRoute, Route, Redirect } from 'react-router';
 
 import App from './app';
+
+import HardCodedHome from './components/hardCodedHome';
+import InfoHander from './components/infoHandler';
+
 import HomeHandler from './components/homeHandler';
 import PageHandler from './components/pageHandler';
 import PostHandler from './components/postHandler';
@@ -22,27 +28,34 @@ const resources = {
 };
 
 /**
- * Returns the routes using the path index
+ * Returns the routes using the path index.
+ * The routes are built using the path index which gets added to the initial state.
  */
 function getRoutes(initialState) {
   const routes = [];
   const paths = initialState.paths;
 
   try {
-    if (paths) {
-      // const env = initialState.env;
+    if (isEmpty(paths)) {
+      // paths will not exist if the frontend is not connected up with the api.
+      // this is most likely to occur when a project starts and it is in it's teething phase.
+      routes.push(<IndexRoute key={'hard-coded-home'} component={HardCodedHome} />);
+      routes.push(<Route path="/updating" key="info-caching" component={InfoHander} />);
+      routes.push(<Route path="/prototyping" key="info-prototyping" component={InfoHander} />);
+      routes.push(<Route path="/caching" key="info-caching" component={InfoHander} />);
+    } else {
 
-      _.forEach(paths, (config, path) => {
+      forEach(paths, (config, path) => {
 
         if (path === '/') {
-          const handler = _.has(resources, config.type) ? resources[config.type].handler : resources.page.handler;
+          const handler = has(resources, config.type) ? resources[config.type].handler : resources.page.handler;
           routes.push(<IndexRoute key={path} component={handler} />);
-        } else if (_.has(config, 'redirect')) {
+        } else if (has(config, 'redirect')) {
           // redirect to the redirect setting
           routes.push(<Redirect key={path} from={path} to={config.redirect} />);
         } else {
           // default to the page handler if no type is given
-          const handler = _.has(resources, config.type) ? resources[config.type].handler : resources.page.handler;
+          const handler = has(resources, config.type) ? resources[config.type].handler : resources.page.handler;
 
           routes.push(
             <Route key={path}
