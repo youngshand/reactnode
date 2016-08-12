@@ -13,6 +13,8 @@ function reducer(state, action) {
       return state.setIn(['menu', 'isOpen'], false);
     case constants.TOGGLE_MENU:
       return state.setIn(['menu', 'isOpen'], !state.get('menu').get('isOpen'));
+    case constants.NAVIGATE_TO:
+      return state.set('location', action.location);
     case constants.SET_PREV_PAGE:
       return state.mergeDeep({
         prevPage: {

@@ -6,7 +6,9 @@ const constants = {
 
   OPEN_MENU: 'OPEN_MENU',
   CLOSE_MENU: 'CLOSE_MENU',
-  TOGGLE_MENU: 'TOGGLE_MENU'
+  TOGGLE_MENU: 'TOGGLE_MENU',
+
+  NAVIGATE_TO: 'NAVIGATE_TO'
 };
 
 
@@ -46,6 +48,13 @@ export function closeMenu() {
 export function toggleMenu() {
   return {
     type: constants.TOGGLE_MENU
+  };
+}
+
+export function navigateTo(location) {
+  return {
+    type: constants.NAVIGATE_TO,
+    location
   };
 }
 

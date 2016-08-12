@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { withRouter, routerShape } from 'react-router';
+import { withRouter, routerShape } from 'react-router';
 import pick from 'lodash/pick';
+
+import { navigateTo } from './actions';
 
 import Menu from './components/navigation/menu';
 import Footer from './components/navigation/footer';
 import Header from './components/navigation/header';
 
 
-// This is the controller view
+/**
+ * The main component of the website.
+ * Page handlers are rendered within this component.
+ */
 class App extends React.Component {
 
-  // componentDidMount() {
-  //   this.props.router.listenBefore((evt) => {
-  //     console.log('EVT', evt);
-  //   });
-  // }
+  componentDidMount() {
+    // By default the location object is not accessible in the state.
+    // This attaches a listener to the router and detects updates on the location
+    // and passes the new location to the state.
+    this.props.router.listenBefore((location) => {
+      this.props.dispatch(navigateTo(location));
+    });
+  }
 
   render() {
     return (
@@ -33,8 +41,9 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  // router: routerShape,
-  children: React.PropTypes.object.isRequired
+  router: routerShape.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired
 }
 
 /**
@@ -47,6 +56,6 @@ function mapStateToProps(state) {
   return pick(state.toJS(), ['router', 'dispatch', 'children']);
 }
 
-// make the react router avaliable to the app
-// connect app to the redux store
-export default connect(mapStateToProps)(App);
+// Make the react router avaliable to the app.
+// Connect app to the redux store.
+export default withRouter(connect(mapStateToProps)(App));
