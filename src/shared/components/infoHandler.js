@@ -50,7 +50,6 @@ class InfoHandler extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    console.log('UPDATING', nextProps.location.pathname);
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.updateContent(nextProps.location.pathname);
     }
@@ -104,7 +103,6 @@ InfoHandler.propTypes = {
  * Returns only the props required for this component to render
  */
 function mapStateToProps(state) {
-  console.log('INFO UPDATE', state);
   return pick(state, ['location']);
 }
 
