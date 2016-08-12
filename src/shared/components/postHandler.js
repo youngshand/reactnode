@@ -13,4 +13,4 @@ class PostHandler extends React.Component {
 
 }
 
-export default connect(state => state.toJS())(PostHandler);
+export default connect(state => state)(PostHandler);

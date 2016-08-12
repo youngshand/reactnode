@@ -11,7 +11,7 @@ const initailStateDefaults = {
   env: ENV,
 
   menu: {
-    isOpen: false
+    isOpen: false,
   }
 };
 

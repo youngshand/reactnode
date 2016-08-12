@@ -53,7 +53,7 @@ App.propTypes = {
  * http://lodash.com/docs#pick
  */
 function mapStateToProps(state) {
-  return pick(state.toJS(), ['router', 'dispatch', 'children']);
+  return pick(state, ['router', 'dispatch', 'children']);
 }
 
 // Make the react router avaliable to the app.
