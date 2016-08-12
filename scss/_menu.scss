@@ -34,7 +34,7 @@
   width: 40px;
 
   &:after {
-    content: "\00d7"; /* use the hex value here... */
+    content: "\00d7"; /* multiply by character */
     position: absolute;
     top: 0;
     bottom: 0;

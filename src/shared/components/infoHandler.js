@@ -4,9 +4,10 @@ import Remarkable from 'remarkable';
 import { connect } from 'react-redux';
 import { locationShape } from 'react-router';
 import request from 'superagent';
+import { cancelableRequest } from '../utils/cancel';
 
 import pick from 'lodash/pick';
-
+import noop from 'lodash/noop';
 
 // use remarkable to parse markdown documents
 const md = new Remarkable();
@@ -32,6 +33,7 @@ const snippets = {
   },
 };
 
+
 /**
  * The info handler renders info about this react framework.
  */
@@ -42,39 +44,61 @@ class InfoHandler extends React.Component {
 
     this.state = {
       content: '',
-    }
+      cancel: noop // defining a noop allows us to call cancel it without checking for its existence
+    };
   }
 
+  /**
+   * Get the content for the initial page load.
+   */
   componentDidMount() {
     this.updateContent(this.props.location.pathname);
   }
 
+  /**
+   * If the location changes update what content is displayed.
+   */
   componentWillUpdate(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.updateContent(nextProps.location.pathname);
     }
   }
 
+  /**
+   * Outstanding requests might be in progress. cancel them before unmounting the component.
+   */
+  componentWillUnmount() {
+    // cancel any outstanding requests made in the update content function
+    this.state.cancel();
+  }
+
+  /**
+   * The info content is stored on bitbucket as a markdown snippet.
+   * This makes a cancelable request for that content and sets it in the state when successful.
+   *
+   * @param {string} key The snippet key, or a route which should match those in the snippets object.
+   */
   updateContent(key) {
-    this.setState({ content: '' });
-
     const snippet = snippets[key];
+    const req = cancelableRequest(
+      request.get(`https://bitbucket.org/!api/2.0/snippets/youngshand/${snippet.key}/master/files/${snippet.file}`)
+    );
 
-    request.get(`https://bitbucket.org/!api/2.0/snippets/youngshand/${snippet.key}/master/files/${snippet.file}`)
-           .end((err, res) => {
-             if (err) {
-               console.error(err);
-             } else {
-              this.setState({ content: res.text });
-             }
-           });
+    // cancel any outstading requests
+    this.state.cancel();
+
+    // set the response text as our content when successful
+    req.promise.then((data) => this.setState({ content: data.text }));
+
+    // remove the old content and update the cancel function so the unmount can call it
+    this.setState({ content: '', cancel: req.cancel });
   }
 
   render() {
     const content = this.state.content;
     const snippet = snippets[this.props.location.pathname];
 
-    // The
+    // The content does not take long enough to load for a loading component to be worth showing
     if (!content) {
       return false;
     } else {
@@ -82,7 +106,6 @@ class InfoHandler extends React.Component {
         <div>
           <div dangerouslySetInnerHTML={{ __html: md.render(this.state.content) }}>
           </div>
-
           <p>If you want to make updates to this document <a href={`https://bitbucket.org/snippets/youngshand/${snippet.key}`} target="_blank" rel="noopener noreferrer">edit it on Bitbucket</a></p>
         </div>
       );
