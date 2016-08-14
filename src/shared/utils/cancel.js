@@ -1,4 +1,3 @@
-
 /**
  * For more information see:
  * https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
@@ -28,7 +27,7 @@
  * // to cancel when unmounting add this to your componentWillUnmount()
  * if (this.state.cancel) this.state.cancel();
  * ```
- *
+ * @returns {object} An object containing the cancelable promise and cancel function.
  * @returns {Promise} obj.promise The cancelable promise object
  * @returns {function} obj.cancel The function to call when canceling the promise
  */
@@ -59,6 +58,7 @@ export function cancelablePromise(promise) {
  * on end() callback. A cancelable promise is returned.
  *
  * @param {superagent} request A superagent request object
+ * @returns {object} An object containing the cancelable promise and cancel function.
  * @returns {Promise} obj.promise The cancelable promise object
  * @returns {function} obj.cancel The function to call when canceling the promise
  */
