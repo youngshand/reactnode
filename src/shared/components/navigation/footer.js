@@ -12,7 +12,7 @@ class Footer extends React.Component {
     return (
       <footer className="footer container">
         <a href="https://bitbucket.org/youngshand/react-frontend-2" target="_blank" rel="noopener noreferrer">View this project on bitbucket</a><br />
-        <a href="http://jenkins.yng.sh:8080/view/Sovereign/job/YSReactFrameworkStaging" target="_blank" rel="noopener noreferrer">View this project's jenkins configuration</a>
+        <a href="http://jenkins.yng.sh:8080/job/YSReactFrameworkStaging/" target="_blank" rel="noopener noreferrer">View this project's jenkins configuration</a>
 
         <div className="copy">
           <a href="http://youngshand.com" target="_blank" rel="noopener noreferrer">&copy; Young &amp; Shand</a>
