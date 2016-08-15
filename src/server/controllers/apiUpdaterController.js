@@ -68,7 +68,6 @@ function updator(url, resource) {
             resolve();
           }
         } catch (e) {
-          console.log(data);
           reject(e);
         }
       }
@@ -90,8 +89,6 @@ class ApiUpdaterController {
           // while the live api is a work in progress we will support sourcing
           // from the dummy api
           const url = `${LOCALHOST}/api/${DEFAULT_SOURCE_API}/${resource.slug}`;
-
-          console.log('URL', url);
 
           return testEndpoint(url, resource);
         }));

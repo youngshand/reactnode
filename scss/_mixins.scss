@@ -1,5 +1,14 @@
 /* Mixins */
 
+@mixin clearfix {
+  &:after {
+    content:"";
+    display:block;
+    clear:both;
+  }
+}
+
+
 @mixin image-2x($file, $type, $width, $height) {
   background-image: url($file + '.' + $type);
   @media only screen and (-webkit-min-device-pixel-ratio: 2),

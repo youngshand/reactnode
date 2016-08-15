@@ -13,4 +13,4 @@ class HomeHandler extends React.Component {
 
 }
 
-export default connect(state => state.toJS())(HomeHandler);
+export default connect(state => state)(HomeHandler);

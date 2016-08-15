@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-
 import { Link } from 'react-router';
+
+import pick from 'lodash/pick';
 
 import { toggleMenu } from '../../actions';
 
@@ -31,7 +32,14 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func.isRequired
 };
 
-export default connect(state => state.toJS())(Header);
+/**
+ * Returns only the props required for this component to render
+ */
+function mapStateToProps(state) {
+  return pick(state, ['dispatch']);
+}
+
+export default connect(mapStateToProps)(Header);

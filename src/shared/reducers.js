@@ -1,28 +1,33 @@
 import { constants } from './actions';
+import set from 'lodash/set';
+import merge from 'lodash/merge';
+
 
 /**
  * Reducer function responds to application events
- * the state object is an instance of Immutable JS
- * see: https://facebook.github.io/immutable-js/
+ * and updates the application state.
+ *
+ * Redux always expects to have a new state object returned.
+ * The Object.assign function can ensure this happens but not with nested objects.
+ * If you need to update nested properties Lodash's merge can be used
+ * in combination with set to trigger redux updates on a nested object.
+ *
+ * For more information:
+ * https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ * https://lodash.com/docs#set
+ * https://lodash.com/docs#merge
  */
-function reducer(state, action) {
+export default function reducer(state, action) {
   switch (action.type) {
     case constants.OPEN_MENU:
-      return state.setIn(['menu', 'isOpen'], true);
+      return merge({}, set(state, 'menu.isOpen', true));
     case constants.CLOSE_MENU:
-      return state.setIn(['menu', 'isOpen'], false);
+      return merge({}, set(state, 'menu.isOpen', false));
     case constants.TOGGLE_MENU:
-      return state.setIn(['menu', 'isOpen'], !state.get('menu').get('isOpen'));
-    case constants.SET_PREV_PAGE:
-      return state.mergeDeep({
-        prevPage: {
-          url: action.url,
-          query: action.query
-        }
-      });
+      return merge({}, set(state, 'menu.isOpen', !state.menu.isOpen));
+    case constants.NAVIGATE_TO:
+      return Object.assign({}, set(state, 'location', action.location));
     default:
       return state;
   }
 }
-
-export default reducer;

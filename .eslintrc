@@ -7,7 +7,7 @@
   },
   "globals": {
     "React": false,
-    "react": false,
+    "react": false
   },
   "plugins": [
     "react"
@@ -20,6 +20,6 @@
     "no-console": 0,
     "no-underscore-dangle": 1,
     "quotes": [2, "single"],
-    "react/no-danger": "off",
+    "react/no-danger": "off"
   }
 }

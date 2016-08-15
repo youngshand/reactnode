@@ -13,4 +13,4 @@ class PageHandler extends React.Component {
 
 }
 
-export default connect(state => state.toJS())(PageHandler);
+export default connect(state => state)(PageHandler);
