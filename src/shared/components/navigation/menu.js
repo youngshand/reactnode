@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import pick from 'lodash/pick';
+import map from 'lodash/map';
 
 import { closeMenu } from '../../actions';
-
+import { snippets } from '../infoHandler';
 
 class Menu extends React.Component {
 
@@ -15,6 +16,10 @@ class Menu extends React.Component {
   }
 
   render() {
+    const snippetLinks = map(snippets, (s, k) => (
+      <li key={k} className="menu-item"><Link to={k}>{s.linkText}</Link></li>
+    ));
+
     return this.props.menu.isOpen ? (
       <div className="menu">
         <a className="menu-close-button" onClick={(e) => this.closeHandler(e)} />
@@ -22,9 +27,7 @@ class Menu extends React.Component {
         <h2 className="menu-header">Menu</h2>
 
         <ul className="menu-items">
-          <li className="menu-item"><Link to="/updating">Updating the framework</Link></li>
-          <li className="menu-item"><Link to="/prototyping">Getting started with prototyping</Link></li>
-          <li className="menu-item"><Link to="/caching">Getting started with cache</Link></li>
+          {snippetLinks}
         </ul>
       </div>
     ) : false;

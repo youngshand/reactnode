@@ -8,7 +8,7 @@ import { IndexRoute, Route, Redirect } from 'react-router';
 import App from './app';
 
 import HardCodedHome from './components/hardCodedHome';
-import InfoHander from './components/infoHandler';
+import InfoHander, { snippets } from './components/infoHandler';
 
 import HomeHandler from './components/homeHandler';
 import PageHandler from './components/pageHandler';
@@ -40,9 +40,10 @@ function getRoutes(initialState) {
       // paths will not exist if the frontend is not connected up with the api.
       // this is most likely to occur when a project starts and it is in it's teething phase.
       routes.push(<IndexRoute key={'hard-coded-home'} component={HardCodedHome} />);
-      routes.push(<Route path="/updating" key="info-caching" component={InfoHander} />);
-      routes.push(<Route path="/prototyping" key="info-prototyping" component={InfoHander} />);
-      routes.push(<Route path="/caching" key="info-caching" component={InfoHander} />);
+
+      forEach(snippets, (s, k) => (
+        routes.push(<Route path={k} key="k" component={InfoHander} />)
+      ));
     } else {
 
       forEach(paths, (config, path) => {
