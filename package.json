@@ -17,7 +17,7 @@
     "debug": "npm run watch-js & npm run dev-server & npm run debug-server",
     "debug-server": "devtool lib/server/server --watch",
     "deploy": "npm install --production && npm run build && npm run _deploy_client",
-    "_deploy_client": "NODE_ENV=production && ./node_modules/webpack/bin/webpack.js --color --config ./lib/config/webpack.config.js",
+    "_deploy_client": "NODE_ENV=production && bash ./node_modules/webpack/bin/webpack.js --color --config ./lib/config/webpack.config.js",
     "update:api": "babel-node src/server/updateAPI"
   },
   "homepage": "https://bitbucket.org/youngshand/react-frontend-2",
