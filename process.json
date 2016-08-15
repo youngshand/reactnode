@@ -1,13 +1,13 @@
 {
   "apps" : [{
-    "name" : "Guide to Adulting",
-    "script" : "/home/guidetoadulting/public_html/lib/server/server.js",
-    "error_file" : "/home/guidetoadulting/logs/pm2-err.log",
-    "out_file" : "/home/guidetoadulting/logs/pm2-out.log",
-    "cwd" : "/home/guidetoadulting/public_html/",
+    "name" : "YS React Framework",
+    "script" : "/home/proto/public_html/lib/server/server.js",
+    "error_file" : "/home/proto/logs/pm2-err.log",
+    "out_file" : "/home/proto/logs/pm2-out.log",
+    "cwd" : "/home/proto/public_html/",
     "source_map_support" : true,
     "env_production" : {
-       "NODE_ENV": "production"
+       "NODE_ENV": "staging"
     }
   }]
 }
