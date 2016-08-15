@@ -18,19 +18,32 @@ const md = new Remarkable();
  * and add the snippet key and file name to this snippets object. The snippet must be
  * a markdown file so remarkable can render it.
  */
-const snippets = {
+export const snippets = {
+  '/local': {
+    linkText: 'Setting up Locally',
+    key: 'jxzxE',
+    file: 'snippet.markdown'
+  },
   '/updating': {
+    linkText: 'Updating the framework',
     key: '7jM5n',
     file: 'snippet.markdown'
   },
   '/prototyping': {
+    linkText: 'Getting started with prototyping',
     key: '4j8MX',
     file: 'snippet.markdown'
   },
   '/caching': {
+    linkText: 'Getting started with cache',
     key: 'jxdGq',
     file: 'snippet.markdown'
   },
+  '/deploying': {
+    linkText: 'Deploying to the Live and Staging Servers',
+    key: 'MqRqz',
+    file: 'snippet.markdown'
+  }
 };
 
 
