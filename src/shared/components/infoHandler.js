@@ -106,7 +106,8 @@ class InfoHandler extends React.Component {
         <div>
           <div dangerouslySetInnerHTML={{ __html: md.render(this.state.content) }}>
           </div>
-          <p>If you want to make updates to this document <a href={`https://bitbucket.org/snippets/youngshand/${snippet.key}`} target="_blank" rel="noopener noreferrer">edit it on Bitbucket</a></p>
+          <hr />
+          <p>If you want to make updates to this document <a href={`https://bitbucket.org/snippets/youngshand/${snippet.key}`} target="_blank" rel="noopener noreferrer">edit it on Bitbucket.</a></p>
         </div>
       );
     }
