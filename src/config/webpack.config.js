@@ -3,18 +3,27 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 import Promise from 'es6-promise';
-import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
-import ForceCaseSensitivityPlugin from 'force-case-sensitivity-webpack-plugin';
 
 require('es6-promise').polyfill();
 
 const WEBPACK_DEV_PORT = process.env.WEBPACK_DEV_PORT || 8080;
 const ENV = process.env.NODE_ENV || 'local';
 const BUILD = (ENV === 'staging' || ENV === 'production');
-const persistentPlugins = [
-  new ForceCaseSensitivityPlugin(),
-  new webpack.NoErrorsPlugin()
-];
+
+// local only requirements
+let BrowserSyncPlugin;
+let ForceCaseSensitivityPlugin
+let persistentPlugins;
+
+if (ENV === 'local') {
+  BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+  ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+
+  persistentPlugins = [
+    new ForceCaseSensitivityPlugin(),
+    new webpack.NoErrorsPlugin()
+  ];
+}
 
 console.log('WEBPACK: Building for environment: ' + ENV);
 

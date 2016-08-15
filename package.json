@@ -24,6 +24,7 @@
   "devDependencies": {
     "browser-sync": "^2.13.0",
     "browser-sync-webpack-plugin": "^1.1.0",
+    "force-case-sensitivity-webpack-plugin": "^0.1.1",
     "chai": "^3.5.0",
     "devtool": "^2.2.0",
     "enzyme": "^2.0.0",
@@ -70,7 +71,6 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "fbjs": "^0.8.3",
     "file-loader": "^0.9.0",
-    "force-case-sensitivity-webpack-plugin": "^0.1.1",
     "history": "^3.0.0",
     "image-webpack-loader": "^2.0.0",
     "imagemin": "^5.2.2",
