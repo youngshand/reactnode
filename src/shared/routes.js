@@ -15,6 +15,13 @@ import PageHandler from './components/pageHandler';
 import PostHandler from './components/postHandler';
 import NotFoundHandler from './components/notFoundHandler';
 
+/**
+ * Set this to true if you want to use data that has been retrieved
+ * from the api and saved to the initial state rather than the prototype
+ * comonents.
+ */
+const USE_API = false;
+
 const resources = {
   home: {
     handler: HomeHandler
@@ -27,6 +34,7 @@ const resources = {
   }
 };
 
+
 /**
  * Returns the routes using the path index.
  * The routes are built using the path index which gets added to the initial state.
@@ -36,14 +44,15 @@ function getRoutes(initialState) {
   const paths = initialState.paths;
 
   try {
-    if (isEmpty(paths)) {
+    if (!USE_API) {
       // paths will not exist if the frontend is not connected up with the api.
       // this is most likely to occur when a project starts and it is in it's teething phase.
       routes.push(<IndexRoute key={'hard-coded-home'} component={HardCodedHome} />);
 
-      forEach(snippets, (s, k) => (
+      forEach(snippets, (s, k) => {
+        console.log('MAKING ROUTE', k);
         routes.push(<Route path={k} key="k" component={InfoHander} />)
-      ));
+      });
     } else {
 
       forEach(paths, (config, path) => {
