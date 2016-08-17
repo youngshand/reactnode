@@ -36,7 +36,10 @@ lib
 scripts/local.sh
 
 lib
-dist/js/app.js
+dist/js/*
+!dist/js/.gitkeep
+dist/css/*
+!dist/css/.gitkeep
 dist/css/theme.css*
 
 # ===== End Node.gitignore =====
