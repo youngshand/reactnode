@@ -10,7 +10,6 @@ const constants = {
 
   NAVIGATE_TO: 'NAVIGATE_TO',
 
-  INIT_MODAL: 'INIT_MODAL',
   ACTIVATE_MODAL: 'ACTIVATE_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
   TOGGLE_MODAL: 'TOGGLE_MODAL'
@@ -61,14 +60,6 @@ export function navigateTo(location) {
     type: constants.NAVIGATE_TO,
     location
   };
-}
-
-export function initModal(modalTag, isActive) {
-  return {
-    type: constants.INIT_MODAL,
-    modalTag,
-    isActive
-  }
 }
 
 export function activateModal(modalTag) {
