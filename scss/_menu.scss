@@ -31,24 +31,5 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 40px;
-  width: 40px;
-
-  &:after {
-    content: "\00d7"; /* multiply by character */
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    font-size: 40px;
-    color: black;
-    line-height: 31px;
-    text-align: center;
-  }
-
-  &:hover {
-    background-color: lightgrey;
-  }
 }
 

@@ -1,7 +1,7 @@
 import { constants } from './actions';
 import set from 'lodash/set';
+import result from 'lodash/result';
 import merge from 'lodash/merge';
-
 
 /**
  * Reducer function responds to application events
@@ -19,14 +19,36 @@ import merge from 'lodash/merge';
  */
 export default function reducer(state, action) {
   switch (action.type) {
+    /**
+     * Location
+     */
+    case constants.NAVIGATE_TO:
+      return Object.assign({}, set(state, 'location', action.location));
+
+    /**
+     * Menu
+     */
     case constants.OPEN_MENU:
       return merge({}, set(state, 'menu.isOpen', true));
     case constants.CLOSE_MENU:
       return merge({}, set(state, 'menu.isOpen', false));
     case constants.TOGGLE_MENU:
       return merge({}, set(state, 'menu.isOpen', !state.menu.isOpen));
-    case constants.NAVIGATE_TO:
-      return Object.assign({}, set(state, 'location', action.location));
+
+    /**
+     * Modals
+     */
+    case constants.ACTIVATE_MODAL:
+      return merge({}, set(state, `modals[${action.modalTag}].isActive`, true));
+    case constants.CLOSE_MODAL:
+      return merge({}, set(state, `modals[${action.modalTag}].isActive`, false));
+
+    // eslint-disable-next-line no-case-declarations
+    case constants.TOGGLE_MODAL:
+      const isActive = !result(state, `modals[${action.modalTag}].isActive`, false);
+
+      return state.setIn(['modals', action.modalTag], { isActive: isActive });
+
     default:
       return state;
   }

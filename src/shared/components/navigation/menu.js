@@ -8,6 +8,7 @@ import map from 'lodash/map';
 import { closeMenu } from '../../actions';
 import { snippets } from '../infoHandler';
 
+
 class Menu extends React.Component {
 
   closeHandler(e) {
@@ -22,7 +23,7 @@ class Menu extends React.Component {
 
     return this.props.menu.isOpen ? (
       <div className="menu">
-        <a className="menu-close-button" onClick={(e) => this.closeHandler(e)} />
+        <a className="close-button menu-close-button" onClick={(e) => this.closeHandler(e)} />
 
         <h2 className="menu-header">Menu</h2>
 

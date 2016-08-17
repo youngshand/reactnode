@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../../shared/reducers';
-import getHead from '../../shared/head';
+// import getHead from '../../shared/head';
 import { match, RouterContext } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { ENV, DEV_PORT } from '../config';
@@ -31,9 +31,9 @@ export default async (req, res) => {
 		} else if (renderProps) {
 			let headContent = { meta: [] };
 
-			try {
-				headContent = getHead(location.pathname, initialState);
-			} catch (e) { console.log(e.toString()) }
+			// try {
+			// 	headContent = getHead(location.pathname, initialState);
+			// } catch (e) { console.log(e.toString()) }
 
 			const store = createStore(reducer, initialState);
       const favicon = initialState.settings.favicon ? initialState.settings.favicon.url : '';

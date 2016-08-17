@@ -9,6 +9,8 @@ import Menu from './components/navigation/menu';
 import Footer from './components/navigation/footer';
 import Header from './components/navigation/header';
 
+import TermsModal from './components/manditories/termsModal';
+
 
 /**
  * The main component of the website.
@@ -28,6 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <TermsModal />
         <Header />
         <Menu />
         <div id="container">

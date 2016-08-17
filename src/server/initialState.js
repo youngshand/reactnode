@@ -12,7 +12,9 @@ const initailStateDefaults = {
 
   menu: {
     isOpen: false
-  }
+  },
+
+  modals: {}
 };
 
 

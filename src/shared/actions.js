@@ -8,7 +8,12 @@ const constants = {
   CLOSE_MENU: 'CLOSE_MENU',
   TOGGLE_MENU: 'TOGGLE_MENU',
 
-  NAVIGATE_TO: 'NAVIGATE_TO'
+  NAVIGATE_TO: 'NAVIGATE_TO',
+
+  INIT_MODAL: 'INIT_MODAL',
+  ACTIVATE_MODAL: 'ACTIVATE_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
+  TOGGLE_MODAL: 'TOGGLE_MODAL'
 };
 
 
@@ -55,6 +60,35 @@ export function navigateTo(location) {
   return {
     type: constants.NAVIGATE_TO,
     location
+  };
+}
+
+export function initModal(modalTag, isActive) {
+  return {
+    type: constants.INIT_MODAL,
+    modalTag,
+    isActive
+  }
+}
+
+export function activateModal(modalTag) {
+  return {
+    type: constants.ACTIVATE_MODAL,
+    modalTag
+  };
+}
+
+export function closeModal(modalTag){
+  return {
+    type: constants.CLOSE_MODAL,
+    modalTag
+  };
+}
+
+export function toggleModal(modalTag) {
+  return {
+    type: constants.TOGGLE_MODAL,
+    modalTag
   };
 }
 

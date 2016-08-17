@@ -48,7 +48,7 @@ export function cancelablePromise(promise) {
     promise: wrappedPromise,
     cancel() {
       hasCanceled = true;
-    },
+    }
   };
 }
 
