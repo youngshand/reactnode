@@ -7,7 +7,7 @@ html(lang="en")
     title(data-react-helmet="true") #{headContent.title}
     each m in headContent.meta
       meta(name=m.name, property=m.property, content=m.content, data-react-helmet="true")
-      
+
     meta(property="og:type", content=headContent.type)
     meta(property="fb:admins", content=headContent.fbAdmins)
     script(type="application/ld+json") !{headContent.schema}
@@ -16,7 +16,7 @@ html(lang="en")
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel="icon", href="#{favicon}", type="image/x-icon")
-    
+
     if ENV != 'local'
       link(rel='stylesheet', href='/css/app.css', type="text/css")
 
@@ -63,8 +63,8 @@ html(lang="en")
         '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','#{headContent.GTM}');
         <!-- End Google Tag Manager -->
-      
-  
+
+
     #fb-root
     script.
       (function(d, s, id) {
@@ -74,7 +74,7 @@ html(lang="en")
         js.src = "http://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=879902015421874";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-      
+
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '946271728825575',
@@ -84,7 +84,7 @@ html(lang="en")
       };
 
     include ./svg.html
-      
+
     #app !{content}
     <!--<![endif]-->
 
@@ -95,4 +95,5 @@ html(lang="en")
     if ENV == 'local'
       script(src='http://' + host + ':' + DEV_PORT + '/js/app.js', defer)
     else
+      script(src='/js/vendor.js', defer)
       script(src='/js/app.js', defer)
