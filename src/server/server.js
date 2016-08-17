@@ -24,7 +24,6 @@ app.listen(PORT, () => {
     });
   }
 
-
   console.log(`Listening on ${LOCALHOST}`);
 
   // Fire off an API update on server start
