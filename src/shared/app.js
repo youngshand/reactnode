@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, routerShape } from 'react-router';
 import pick from 'lodash/pick';
 
-import { navigateTo } from './actions';
+import { closeMenu, navigateTo } from './actions';
 
 import Menu from './components/navigation/menu';
 import Footer from './components/navigation/footer';
@@ -23,6 +23,9 @@ class App extends React.Component {
     // This attaches a listener to the router and detects updates on the location
     // and passes the new location to the state.
     this.props.router.listenBefore((location) => {
+      // make sure the menu always closes on navigation
+      this.props.dispatch(closeMenu());
+
       this.props.dispatch(navigateTo(location));
     });
   }

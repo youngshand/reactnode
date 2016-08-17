@@ -1,6 +1,5 @@
 import has from 'lodash/has';
 import forEach from 'lodash/forEach';
-import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 
 import { IndexRoute, Route, Redirect } from 'react-router';
@@ -21,6 +20,7 @@ import NotFoundHandler from './components/notFoundHandler';
  * comonents.
  */
 const USE_API = false;
+
 
 const resources = {
   home: {
@@ -49,10 +49,8 @@ function getRoutes(initialState) {
       // this is most likely to occur when a project starts and it is in it's teething phase.
       routes.push(<IndexRoute key={'hard-coded-home'} component={HardCodedHome} />);
 
-      forEach(snippets, (s, k) => {
-        console.log('MAKING ROUTE', k);
-        routes.push(<Route path={k} key="k" component={InfoHander} />)
-      });
+      // create routes for info pages
+      forEach(snippets, (s, k) => routes.push(<Route path={k} key="k" component={InfoHander} />));
     } else {
 
       forEach(paths, (config, path) => {
