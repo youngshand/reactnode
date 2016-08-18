@@ -76,5 +76,51 @@ The site can be accessed on `http://localhost:3002`, or set your own port in you
 The webpack server runs on `http://localhost:8080` making hot loading accessible
 to the client app. You shouldn't need to access the webpack server otherwise.
 
+On first run the
+
+**`npm run clean`**
+
+Removes all code from the lib directory to ensure that new builds are not affected
+from older ones.
+
+**`npm run watch`**
+
+Tells babel to transpile the `src` code into the `lib` dir when `src` js files are changed
+
+**`npm run devServer`**
+
+Runs the webpack live reload development server on `lib` code.
+
+**`npm run test`**
+
+TODO: Runs all unit tests.
+
+**`npm test:lint`**
+
+Checks code for linting errors.
+
+**`npm build`**
+
+Cleans the lib directory and re-transpiles the source code.
+
+**`npm run debug`**
+
+Runs the dev server through the chrome inspector tools. This allows the developer
+to add breakpoints and intereact with logs on server code as you wound in the browser.
+
 **`npm run deploy`**
+
+Installs all dependancies and builds the app for production use
+
+**`npm run deploy:test`**
+
+The same as deploy except it does not run installs. This can be handy for debugging production build issues.
+
+**`npm run deploy:client`**
+
+Used by the `deploy` and `deploy:client` commands to run the webpack portion of the build.
+
+**`npm run update:api`**
+
+Triggers an api update.
 

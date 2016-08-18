@@ -1,6 +1,6 @@
 import app from './app';
 import { PORT, LOCALHOST, ENV } from './config';
-import updateAPI from './updateAPI';
+// import updateAPI from './updateAPI';
 
 app.listen(PORT, () => {
 
@@ -17,6 +17,7 @@ app.listen(PORT, () => {
 
     browserSync({
       proxy: 'localhost:' + PORT,
+      ui: false,
       files: {
         match: ['public/**/*.{js,css}']
       },
@@ -27,5 +28,5 @@ app.listen(PORT, () => {
   console.log(`Listening on ${LOCALHOST}`);
 
   // Fire off an API update on server start
-  updateAPI();
+  // updateAPI();
 });

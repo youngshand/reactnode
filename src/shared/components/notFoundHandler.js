@@ -1,16 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-class NotFoundHandler extends React.Component {
-
-  render() {
-    return (
-      <div className="main-content">
-        Not Found Handler
-      </div>
-    );
-  }
-
+/**
+ * Renders when no page is found for the current url path
+ */
+export default function NotFoundHandler() {
+  return (
+    <div className="main-content">
+      <h2>404</h2>
+    </div>
+  );
 }
-
-export default connect(state => state)(NotFoundHandler);

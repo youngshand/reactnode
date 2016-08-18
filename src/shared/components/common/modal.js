@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import result from 'lodash/result';
 import pick from 'lodash/pick';
 
-import { closeModal, activateModal } from '../../actions';
+import { closeModal } from '../../actions';
 
+
+/**
+ * Creates a popup modal.
+ * Each modal uses space in the store to keep track of it's active state
+ * When creating the modal a uniq tag prop must be provided.
+ */
 class Modal extends React.Component {
 
   constructor(props) {
     super(props);
-
-    if (props.initActive) props.dispatch(activateModal(props.tag));
 
     this.state = {
       tag: props.tag
@@ -49,9 +53,8 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   tag: PropTypes.string.isRequired,
-  initActive: PropTypes.bool,
   classNames: PropTypes.string,
-  children: PropTypes.any,
+  children: PropTypes.node,
   dispatch: PropTypes.func.isRequired,
   modals: PropTypes.object.isRequired
 };

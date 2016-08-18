@@ -10,8 +10,6 @@ import HardCodedHome from './components/hardCodedHome';
 import InfoHander, { snippets } from './components/infoHandler';
 
 import HomeHandler from './components/homeHandler';
-import PageHandler from './components/pageHandler';
-import PostHandler from './components/postHandler';
 import NotFoundHandler from './components/notFoundHandler';
 
 /**
@@ -26,12 +24,6 @@ const resources = {
   home: {
     handler: HomeHandler
   },
-  page: {
-    handler: PageHandler
-  },
-  post: {
-    handler: PostHandler
-  }
 };
 
 

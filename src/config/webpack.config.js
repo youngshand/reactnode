@@ -68,6 +68,7 @@ module.exports = {
 			new webpack.HotModuleReplacementPlugin(),
 			new webpack.NoErrorsPlugin(),
 			new BrowserSyncPlugin({
+        ui: false,
 				host: 'localhost',
 				port: 3000,
 				proxy: 'http://localhost:' + WEBPACK_DEV_PORT
