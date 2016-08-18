@@ -39,7 +39,7 @@ describe('cancelablePromise', () => {
       });
 
       // cancel the promise before the child promise succeeds
-      // setTimeout(() => cp.cancel(), 30);
+      setTimeout(() => cp.cancel(), 30);
   });
 
 });
