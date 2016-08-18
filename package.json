@@ -6,14 +6,14 @@
     "npm": ">=3.3 <4"
   },
   "scripts": {
-    "test": "babel-node ./test.js",
-    "test:lint": "eslint src/* --ext .js --fix --cache-file",
+    "test": "./node_modules/babel-cli/bin/babel-node.js ./test.js || exit 1",
+    "test:lint": "eslint src/* --ext .js --fix --cache-file || exit 1",
     "clean": "rm -rf lib",
     "build": "npm run clean && ./node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "watchJs": "babel src --watch --out-dir lib",
     "server": "nodemon lib/server/server.js",
-    "devServer": "babel-node lib/server/webpack -c /lib/config/webpack.config.js",
-    "start": "if npm run test:lint && npm run test; then npm run watchJs & npm run devServer & npm run server; fi;",
+    "devServer": "./node_modules/babel-cli/bin/babel-node.js lib/server/webpack -c /lib/config/webpack.config.js",
+    "start": "npm run test:lint && npm run test && npm run watchJs & npm run devServer & npm run server",
     "debug": "npm run watchJs & npm run devServer & npm run debug:server",
     "debug:server": "devtool lib/server/server --watch",
     "deploy:test": "npm run test || exit 1",
@@ -23,7 +23,7 @@
     "deploy:check": "export NODE_ENV=production && npm run build && npm run deploy:client",
     "deploy:staging:check": "export NODE_ENV=staging && npm run deploy:test && npm run build && npm run deploy:client",
     "deploy:client": "node ./node_modules/webpack/bin/webpack.js --color --config ./lib/config/webpack.config.js",
-    "update:api": "babel-node src/server/updateAPI"
+    "update:api": "./node_modules/babel-cli/bin/babel-node.js src/server/updateAPI"
   },
   "homepage": "https://bitbucket.org/youngshand/react-frontend-2",
   "devDependencies": {
