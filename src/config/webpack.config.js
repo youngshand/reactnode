@@ -95,7 +95,7 @@ module.exports = {
 			},
 			{
 				test: /\.js?$/,
-				loaders: ['react-hot', 'babel-loader'],
+				loaders: BUILD ? ['babel-loader'] : ['react-hot', 'babel-loader'],
 				exclude: /node_modules/
 			},
 			{
