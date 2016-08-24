@@ -48,10 +48,10 @@ module.exports = {
 		path: __dirname + '/../../dist',
 		filename: 'js/app.js'
 	} : {
-			path: '/js',
-			filename: 'app.js',
-			publicPath: 'http://localhost:' + WEBPACK_DEV_PORT + '/js/'
-		},
+    path: '/js',
+    filename: 'app.js',
+    publicPath: 'http://localhost:' + WEBPACK_DEV_PORT + '/js/'
+  },
   plugins: BUILD ? [ // production plugins
 			new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.js' }),
 			new webpack.NoErrorsPlugin(),
@@ -80,12 +80,6 @@ module.exports = {
 	node: {
 		fs: 'empty'
 	},
-	resolve: {
-		extensions: ['', '.js'],
-		alias: {
-			'handlebars': 'handlebars/runtime.js'
-		}
-	},
 	module: {
 		preLoaders: [
 			{
@@ -101,7 +95,7 @@ module.exports = {
 			},
 			{
 				test: /\.js?$/,
-				loader: 'babel-loader',
+				loaders: ['react-hot', 'babel-loader'],
 				exclude: /node_modules/
 			},
 			{
