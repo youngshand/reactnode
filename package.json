@@ -19,9 +19,7 @@
     "deploy:test": "npm run test || exit 1",
     "deploy:install": "npm install || exit 1",
     "deploy": "export NODE_ENV=production && npm run build && npm run deploy:client",
-    "deploy:staging": "export NODE_ENV=staging && npm run deploy:test && npm run build && npm run deploy:client",
     "deploy:check": "export NODE_ENV=production && npm run build && npm run deploy:client",
-    "deploy:staging:check": "export NODE_ENV=staging && npm run deploy:test && npm run build && npm run deploy:client",
     "deploy:client": "node ./node_modules/webpack/bin/webpack.js --color --config ./lib/config/webpack.config.js",
     "update:api": "./node_modules/babel-cli/bin/babel-node.js src/server/updateAPI"
   },
