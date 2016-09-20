@@ -39,6 +39,11 @@ export const snippets = {
     key: 'jxdGq',
     file: 'snippet.markdown'
   },
+  '/testing': {
+    linkText: 'Getting started with testing',
+    key: 'qoeM6',
+    file: 'snippet.markdown'
+  },
   '/deploying': {
     linkText: 'Deploying to the Live and Staging Servers',
     key: 'MqRqz',

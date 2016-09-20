@@ -46,8 +46,7 @@ export default function reducer(state, action) {
     // eslint-disable-next-line no-case-declarations
     case constants.TOGGLE_MODAL:
       const isActive = !result(state, `modals[${action.modalTag}].isActive`, false);
-
-      return state.setIn(['modals', action.modalTag], { isActive: isActive });
+      return merge({}, set(state, `modals.[${action.modalTag}].isActive`, isActive));
 
     default:
       return state;
