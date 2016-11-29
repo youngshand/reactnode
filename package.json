@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "./node_modules/babel-cli/bin/babel-node.js ./test.js || exit 1",
-    "test:lint": "./node_modules/eslint/bin/eslint.js src/* --ext .js --fix --cache-file || exit 1",
+    "test:lint": "./node_modules/eslint/bin/eslint.js src/* --ext .js --fix  || exit 1",
     "clean": "rm -rf lib",
     "build": "npm run clean && ./node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "build:watch": "./node_modules/babel-cli/bin/babel.js src --watch --out-dir lib",

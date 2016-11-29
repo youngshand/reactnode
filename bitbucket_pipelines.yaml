@@ -1,0 +1,49 @@
+# This is a sample build configuration for Javascript.
+# Check our guides at https://confluence.atlassian.com/x/VYk8Lw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:5.8.0
+pipelines:
+  branches:
+
+    develop:
+      - step:
+          script:
+            - export ENV=staging;
+            - export NODE_ENV=$ENV;
+            - export PORT=3025;
+            - export USER=XXXXXXXXXXX;
+            - export HOST=staging2.beingbui.lt;
+
+            # for generating nginx configs
+            - export SERVER_NAME="XXXXXXXXXXX.beingbui.lt";
+
+            - export SSH_KEY=$STAGING2_SSH_KEY;
+
+            - bash $BITBUCKET_CLONE_DIR/pipelines/auth.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/install_rsync.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/make_process.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/make_nginx.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/build.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/deploy.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/restart_node.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/restart_nginx.sh
+
+    master:
+      - step:
+          script:
+            - export ENV=production;
+            - export NODE_ENV=production;
+            - export PORT=3005;
+            - export USER=XXXXXXXXXXX;
+            - export HOST=skynet.beingbui.lt;
+
+            - export SERVER_NAME="XXXXXXXXXXX.beingbui.lt";
+            - export SSH_KEY=$SKYNET_SSH_KEY;
+
+            - bash $BITBUCKET_CLONE_DIR/pipelines/auth.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/install_rsync.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/make_process.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/build.sh
+            - bash $BITBUCKET_CLONE_DIR/pipelines/deploy.sh
