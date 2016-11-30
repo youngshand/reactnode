@@ -1,16 +1,25 @@
 // the babel polyfill makes new features like promises avaliable to frontend code
 import 'babel-polyfill';
 
+/**
+ * NPM imports
+ */
+
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
-import routes from '../client/routes';
 import { render } from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import Cookies from 'cookies-js';
-import { pageView } from '../client/utils/dataLayer';
-import errorHandling from './errorHandling';
+
+/**
+ * File imports
+ */
+
+import routes from './routes';
+import { pageView } from './utils/dataLayer';
+import errorHandling from './utils/errorHandling';
 import reducer from '../client/reducers';
 
 window.onerror = errorHandling;

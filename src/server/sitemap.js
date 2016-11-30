@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import each from 'lodash/each';
 import builder from 'xmlbuilder';
 
 class SitemapGenerator {
@@ -29,7 +29,7 @@ class SitemapGenerator {
 
   getRoutes(object){
     let routeObject = [];
-    _.each(object, (element) => {
+    each(object, (element) => {
       routeObject.push(element.slug);
     })
 
@@ -38,7 +38,7 @@ class SitemapGenerator {
 
   constructXML() {
     let xml = builder.create('urlset').att('xmlns', 'http://www.google.com/schemas/sitemap/0.90');
-    _.each(this.routes, (route) => {
+    each(this.routes, (route) => {
       try{
         xml.ele('url')
           .ele('loc', this.url + route).up()

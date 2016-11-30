@@ -1,5 +1,5 @@
 import app from './app';
-import { PORT, LOCALHOST } from './config';
+import { PORT, LOCALHOST } from '../config/config';
 // import updateAPI from './updateAPI';
 
 app.listen(PORT, () => {

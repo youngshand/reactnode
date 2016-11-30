@@ -1,15 +1,21 @@
+/**
+ * Node module imports
+ */
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, routerShape } from 'react-router';
 import pick from 'lodash/pick';
 
+/**
+ * File imports
+ */
+
 import { closeMenu, navigateTo } from './actions';
-
-import Menu from './components/navigation/menu';
-import Footer from './components/navigation/footer';
-import Header from './components/navigation/header';
-
-import TermsModal from './components/manditories/termsModal';
+import Menu from './components/navigation/navigation';
+import Footer from './components/footer/footer';
+import Header from './components/header/header';
+import TermsModal from './components/modal/modal';
 
 
 /**
