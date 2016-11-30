@@ -3,15 +3,15 @@ import 'babel-polyfill';
 
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
-import getRoutes from '../shared/routes';
+import routes from '../client/routes';
 import { render } from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import Cookies from 'cookies-js';
-import { pageView } from '../shared/utils/dataLayer';
+import { pageView } from '../client/utils/dataLayer';
 import errorHandling from './errorHandling';
-import reducer from '../shared/reducers';
+import reducer from '../client/reducers';
 
 window.onerror = errorHandling;
 
@@ -35,6 +35,6 @@ const store = createStore(reducer, initialState, applyMiddleware(logger));
 
 render((
   <Provider store={store}>
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={getRoutes(initialState)} />
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />
   </Provider>
 ), document.getElementById('app'));

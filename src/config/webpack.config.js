@@ -48,11 +48,11 @@ module.exports = {
 		path: __dirname + '/../../dist',
 		filename: 'js/app.js'
 	} : {
-    path: '/js',
-    filename: 'app.js',
-    publicPath: 'http://localhost:' + WEBPACK_DEV_PORT + '/js/'
-  },
-  plugins: BUILD ? [ // production plugins
+		path: '/js',
+		filename: 'app.js',
+		publicPath: 'http://localhost:' + WEBPACK_DEV_PORT + '/js/'
+	},
+	plugins: BUILD ? [ // production plugins
 			new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.js' }),
 			new webpack.NoErrorsPlugin(),
 			new webpack.optimize.DedupePlugin(),
@@ -65,10 +65,11 @@ module.exports = {
 			})
 		] : [
 			// local plugins
+			new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
 			new webpack.HotModuleReplacementPlugin(),
 			new webpack.NoErrorsPlugin(),
 			new BrowserSyncPlugin({
-        ui: false,
+				ui: false,
 				host: 'localhost',
 				port: 3000,
 				proxy: 'http://localhost:' + WEBPACK_DEV_PORT
@@ -81,21 +82,14 @@ module.exports = {
 		fs: 'empty'
 	},
 	module: {
-		preLoaders: [
-			{
-				test: /\.jsx?$/,
-				loaders: ['jshint'],
-				include: './src'
-			}
-		],
 		loaders: [
 			{
 				test: require.resolve('react'),
-				loader: 'expose?React'
+				loader: 'expose-loader?React'
 			},
 			{
 				test: /\.js?$/,
-				loaders: BUILD ? ['babel-loader'] : ['react-hot', 'babel-loader'],
+				loaders: BUILD ? ['babel-loader'] : ['react-hot-loader', 'babel-loader'],
 				exclude: /node_modules/
 			},
 			{
@@ -139,11 +133,11 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: (BUILD) ? ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize' }) : 'style!css'
+				loader: (BUILD) ? ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize' }) : 'style-loader!css-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader'
 			},
 			{
 				test: /\.scss$/,
-				loader: (BUILD) ? ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize!sass' }) : 'style!css!sass'
+				loader: (BUILD) ? ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize!sass' }) : 'style-loader!css-loader!sass-loader'
 			}
 		]
 	}

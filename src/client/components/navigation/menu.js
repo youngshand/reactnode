@@ -1,12 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
 import pick from 'lodash/pick';
-import map from 'lodash/map';
 
 import { closeMenu } from '../../actions';
-import { snippets } from '../infoHandler';
 
 
 class Menu extends React.Component {
@@ -17,9 +14,6 @@ class Menu extends React.Component {
   }
 
   render() {
-    const snippetLinks = map(snippets, (s, k) => (
-      <li key={k} className="menu-item"><Link to={k}>{s.linkText}</Link></li>
-    ));
 
     return this.props.menu.isOpen ? (
       <div className="menu">
@@ -27,9 +21,6 @@ class Menu extends React.Component {
 
         <h2 className="menu-header">Menu</h2>
 
-        <ul className="menu-items">
-          {snippetLinks}
-        </ul>
       </div>
     ) : false;
   }

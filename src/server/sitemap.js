@@ -1,4 +1,3 @@
-import { pageCache, postCache } from './cache';
 import _ from 'lodash';
 import builder from 'xmlbuilder';
 
@@ -9,8 +8,8 @@ class SitemapGenerator {
   }
 
   async init(req, res){
-    const pages = await pageCache.get();
-    const posts = await postCache.get();
+    const pages = null;
+    const posts = null;
 
     this.url = `${req.protocol}://${req.get('host')}/`;
 

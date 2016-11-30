@@ -2,98 +2,99 @@ doctype
 <!--[if IE 9]><html lang="en" class="ie9"><![endif]-->
 <!--[if !IE]><!-->
 html(lang="en")
-  <!--<![endif]-->
-  head
-    title(data-react-helmet="true") #{headContent.title}
-    each m in headContent.meta
-      meta(name=m.name, property=m.property, content=m.content, data-react-helmet="true")
+	<!--<![endif]-->
+	head
+		title(data-react-helmet="true") #{headContent.title}
+		each m in headContent.meta
+			meta(name=m.name, property=m.property, content=m.content, data-react-helmet="true")
 
-    meta(property="og:type", content=headContent.type)
-    meta(property="fb:admins", content=headContent.fbAdmins)
-    script(type="application/ld+json") !{headContent.schema}
+		meta(property="og:type", content=headContent.type)
+		meta(property="fb:admins", content=headContent.fbAdmins)
+		script(type="application/ld+json") !{headContent.schema}
 
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel="icon", href="#{favicon}", type="image/x-icon")
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		link(rel="icon", href="#{favicon}", type="image/x-icon")
 
-    if ENV != 'local'
-      link(rel='stylesheet', href='/css/style.css', type="text/css")
+		if ENV != 'local'
+			link(rel='stylesheet', href='/css/style.css', type="text/css")
 
-    <!--[if lt IE 10]>
-    script.
-      // Console-polyfill. MIT license.
-      (function(global) {
-        'use strict';
-        global.console = global.console || {};
-        var con = global.console;
-        var prop, method;
-        var empty = {};
-        var dummy = function() {};
-        var properties = 'memory'.split(',');
-        var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
-           'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
-           'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
-        while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
-        while (method = methods.pop()) if (typeof con[method] !== 'function') con[method] = dummy;
-      })(typeof window === 'undefined' ? this : window);
-      <![endif]-->
+		<!--[if lt IE 10]>
+		script.
+			// Console-polyfill. MIT license.
+			(function(global) {
+				'use strict';
+				global.console = global.console || {};
+				var con = global.console;
+				var prop, method;
+				var empty = {};
+				var dummy = function() {};
+				var properties = 'memory'.split(',');
+				var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
+					 'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
+					 'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
+				while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
+				while (method = methods.pop()) if (typeof con[method] !== 'function') con[method] = dummy;
+			})(typeof window === 'undefined' ? this : window);
+			<![endif]-->
 
-  <!--[if lt IE 10]>
-  link(rel='stylesheet', href='/css/ie-error.css', type='text/css')
-  body#body.ie
+	<!--[if lt IE 10]>
+	link(rel='stylesheet', href='/css/ie-error.css', type='text/css')
+	body#body.ie
 
-    div.ie-error
-      div.center
-        h1 Sorry, your Internet Explorer browser is out of date.
-        h3 To get the best possible experience using our website
-        h3 we recommend that you&nbsp;
-            a(href="//outdatedbrowser.com", target="blank") upgrade your browser.
-  <![endif]-->
+		div.ie-error
+			div.center
+				h1 Sorry, your Internet Explorer browser is out of date.
+				h3 To get the best possible experience using our website
+				h3 we recommend that you&nbsp;
+						a(href="//outdatedbrowser.com", target="blank") upgrade your browser.
+	<![endif]-->
 
-  <!--[if !lt IE 10]><!-->
-  body#body
-    if ENV != 'local'
-      noscript
-        iframe(src="//www.googletagmanager.com/ns.html?id=#{headContent.GTM}" height="0" width="0" style="display:none;visibility:hidden")
-      script.
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','#{headContent.GTM}');
-        <!-- End Google Tag Manager -->
+	<!--[if !lt IE 10]><!-->
+	body#body
+		if ENV != 'local'
+			noscript
+				iframe(src="//www.googletagmanager.com/ns.html?id=#{headContent.GTM}" height="0" width="0" style="display:none;visibility:hidden")
+			script.
+				(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','dataLayer','#{headContent.GTM}');
+				<!-- End Google Tag Manager -->
 
 
-    #fb-root
-    script.
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "http://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=879902015421874";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+		#fb-root
+		script.
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "http://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=879902015421874";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '946271728825575',
-          xfbml      : true,
-          version    : 'v2.6'
-        });
-      };
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '946271728825575',
+					xfbml      : true,
+					version    : 'v2.6'
+				});
+			};
 
-    include ./svg.html
+		include ./svg.html
 
-    #app !{content}
-    <!--<![endif]-->
+		#app !{content}
+		<!--<![endif]-->
 
-    script.
-      window.ENV = '#{ENV}';
-      window.__INITIAL_STATE__ = !{JSON.stringify(initialState)};
+		script.
+			window.ENV = '#{ENV}';
+			window.__INITIAL_STATE__ = !{JSON.stringify(initialState)};
 
-    if ENV == 'local'
-      script(src='http://' + host + ':' + DEV_PORT + '/js/app.js', defer)
-    else
-      script(src='/js/vendor.js', defer)
-      script(src='/js/app.js', defer)
+		if ENV == 'local'
+			script(src='http://' + host + ':' + DEV_PORT + '/js/vendor.js', defer)
+			script(src='http://' + host + ':' + DEV_PORT + '/js/app.js', defer)
+		else
+			script(src='/js/vendor.js', defer)
+			script(src='/js/app.js', defer)

@@ -3,68 +3,77 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from '../../shared/reducers';
-// import getHead from '../../shared/head';
+import reducer from '../../client/reducers';
+// import getHead from '../../client/head';
 import { match, RouterContext } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { ENV, DEV_PORT } from '../config';
-import InitialStateIndex from '../initialState';
-import getRoutes from '../../shared/routes';
-import getStackTrace from '../../shared/utils/getStackTrace';
+import initialState from '../initialState';
+import routes from '../../client/routes';
+import getStackTrace from '../../client/utils/getStackTrace';
 
 
 export default async (req, res) => {
-	const host = req.hostname;
+
+  const host = req.hostname;
   const location = createMemoryHistory().createLocation(req.url);
-	const initialStateIndex = new InitialStateIndex('initialState');
-	const ngrok = _.includes(host, 'ngrok');
+  const ngrok = _.includes(host, 'ngrok');
 
-	const initialState = await initialStateIndex.get();
+  match({ routes, location }, (error, redirectLocation, renderProps) => {
 
-	match({ routes: getRoutes(initialState), location }, (error, redirectLocation, renderProps) => {
-    initialState.location = location;
+    try{
 
-		if (error) {
-			res.status(500).send(error.message);
-		} else if (redirectLocation) {
-			res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-		} else if (renderProps) {
-			let headContent = { meta: [] };
+      initialState.location = location;
 
-			// try {
-			// 	headContent = getHead(location.pathname, initialState);
-			// } catch (e) { console.log(e.toString()) }
+      if (error) {
 
-			const store = createStore(reducer, initialState);
-      const favicon = initialState.settings.favicon ? initialState.settings.favicon.url : '';
+        res.status(500).send(error.message);
 
-			try {
-				const content = ReactDOMServer.renderToString(
-					<Provider store={store}>
-						<RouterContext {...renderProps} />
-					</Provider>
-				);
+      } else if (redirectLocation) {
 
-				res.status(200).render('index', {
-					host, headContent, content, initialState, ngrok, DEV_PORT, ENV, favicon
-				});
-			} catch (e) {
+        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
 
-        console.log('SERVER RENDERING ERROR');
-        console.trace(e);
+      } else if (renderProps) {
 
-        const error = {
-          status: 500,
-          message: e,
-          stack: getStackTrace()
-        }
+        let headContent = { meta: [] };
 
-        res.status(500).render('error', {error});
-			}
+        // try {
+        //  headContent = getHead(location.pathname, initialState);
+        // } catch (e) { console.log(e.toString()) }
 
-		} else {
-			res.status(404).send('Not found');
-		}
-	});
+        const store = createStore(reducer, initialState);
+
+
+
+          const favicon = initialState.settings.favicon ? initialState.settings.favicon.url : '';
+
+          const content = ReactDOMServer.renderToString(
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          );
+
+          res.status(200).render('index', {
+            host, headContent, content, initialState, ngrok, DEV_PORT, ENV, favicon
+          });
+
+      } else {
+        res.status(404).send('Not found');
+      }
+    } catch (e) {
+
+      console.log('SERVER RENDERING ERROR');
+      console.trace(e);
+
+      const error = {
+        status: 500,
+        message: e,
+        stack: getStackTrace()
+      }
+
+      res.status(500).render('error', {error});
+    }
+
+  });
 
 };

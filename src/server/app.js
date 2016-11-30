@@ -1,17 +1,38 @@
-import _ from 'lodash';
+/**
+ * Node module imports
+ */
+
+import includes from 'lodash/includes';
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import routes from './routes/index';
-import api from './routes/api';
 import request from 'superagent';
-import { ENV } from './config';
+import mongoose from 'mongoose';
+import logger from 'morgan';
 
-// import { statusCodeCache } from './cache';
+/**
+ * File imports
+ */
+
+import routes from './routes/index';
+import { ENV, DB_NAME } from './config';
+
+/**
+ * Initialise expressJS
+ */
 
 const app = express();
+
+/**
+ * Connect to the MongoDB
+ */
+
+mongoose.connect(`mongodb://localhost/${ DB_NAME }`);
+
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+});
 
 // set the env to local if it is not defined in NODE_ENV
 if (!process.env.NODE_ENV) {
@@ -45,7 +66,6 @@ if (ENV === 'local') {
 
 // add routes to the app
 // this is where we plugin the main parts of the application
-app.use('/api', api);
 app.use('/', routes);
 
 // catch all 404 and forward to error handler
@@ -53,7 +73,7 @@ app.use((req, res) => {
   const err = new Error('Not Found');
   err.status = 404;
 
-  if (_.includes(req.get('Content-Type'), 'application/json')) {
+  if (includes(req.get('Content-Type'), 'application/json')) {
     // for json requests pass back 404 object which the app can handle correctly
     res.status(404).json({
       status: 404,

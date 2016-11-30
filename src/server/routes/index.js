@@ -1,6 +1,5 @@
 import express from 'express';
 import indexController from '../controllers/indexController';
-import debugController from '../controllers/debugController';
 import SitemapGenerator from '../sitemap';
 
 const router = express.Router();
@@ -13,9 +12,6 @@ const siteMapGenerator = new SitemapGenerator();
 router.get('/sitemap.xml', (req, res) => {
   siteMapGenerator.init(req, res);
 });
-
-/* GET debug routes */
-router.get('/debug/:id', debugController);
 
 /* GET home page. */
 router.get('/*', indexController);
