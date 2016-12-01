@@ -24,7 +24,7 @@ module.exports = {
 		],
 	output: {
 		path: '/js',
-		chunkFilename: 'app.js',
+		chunkFilename: '[name].js',
 		filename: 'app.js',
 		publicPath: 'http://localhost:' + WEBPACK_DEV_PORT + '/js/'
 	},

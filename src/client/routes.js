@@ -46,7 +46,31 @@ export default (
       path="/register"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./pages/notFound').default);
+          cb(null, require('./pages/register').default);
+        });
+      }}
+    />
+    <Route
+      path="/questions:quid"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./pages/question').default);
+        });
+      }}
+    />
+    <Route
+      path="/fact:fuid"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./pages/fact').default);
+        });
+      }}
+    />
+    <Route
+      path="/success"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./pages/success').default);
         });
       }}
     />
