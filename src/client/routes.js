@@ -1,3 +1,4 @@
+// @flow
 /**
  * Node Modules imports
  */

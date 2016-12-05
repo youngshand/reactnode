@@ -1,3 +1,4 @@
+// @flow
 /**
  * Node module imports
  */
@@ -20,7 +21,7 @@ import initialState from '../initialState';
 import routes from '../../client/routes';
 import getStackTrace from '../../client/utils/getStackTrace';
 
-export default async (req, res) => {
+export default async (req: Object, res: Object) => {
 
 	const host = req.hostname;
 	const ngrok = includes(host, 'ngrok');

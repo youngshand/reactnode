@@ -55,7 +55,7 @@ function withViewport(ComposedComponent) {
       return <ComposedComponent {...this.props} viewport={this.state.viewport} />;
     }
 
-    handleResize(value) {
+    handleResize(value: number) {
       this.setState({ viewport: value }); // eslint-disable-line react/no-set-state
     }
 

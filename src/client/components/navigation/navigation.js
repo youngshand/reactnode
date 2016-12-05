@@ -1,3 +1,4 @@
+// @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
@@ -22,7 +23,7 @@ class Menu extends React.Component {
         <h2 className="menu-header">Menu</h2>
 
       </div>
-    ) : false;
+    ) : null;
   }
 
 }

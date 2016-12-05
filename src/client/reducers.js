@@ -1,3 +1,4 @@
+// @flow
 import { constants } from './actions';
 import set from 'lodash/set';
 import result from 'lodash/result';
@@ -17,7 +18,7 @@ import merge from 'lodash/merge';
  * https://lodash.com/docs#set
  * https://lodash.com/docs#merge
  */
-export default function reducer(state, action) {
+export default function reducer(state: Object, action: Object) {
   switch (action.type) {
     /**
      * Location

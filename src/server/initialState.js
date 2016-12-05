@@ -1,3 +1,4 @@
+// @flow
 import { ENV } from '../config/config';
 
 /**

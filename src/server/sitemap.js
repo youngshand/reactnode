@@ -1,13 +1,19 @@
+// @flow
 import each from 'lodash/each';
 import builder from 'xmlbuilder';
 
 class SitemapGenerator {
+
+  postRoutes:?Object[];
+  routes:?Object[];
+  url:?string;
+
   constructor(){
     this.url = null;
     this.routes = null;
   }
 
-  async init(req, res){
+  async init(req:Object, res:Object){
     const pages = null;
     const posts = null;
 
@@ -27,7 +33,7 @@ class SitemapGenerator {
 
   }
 
-  getRoutes(object){
+  getRoutes(object:?Object){
     let routeObject = [];
     each(object, (element) => {
       routeObject.push(element.slug);

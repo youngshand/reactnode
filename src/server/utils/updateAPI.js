@@ -1,4 +1,5 @@
-import { PORT } from '../config/config';
+// @flow
+import { PORT } from '../../config/config';
 import request from 'request';
 
 export default function updateAPI(){

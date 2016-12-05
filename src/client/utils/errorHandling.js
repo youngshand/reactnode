@@ -1,4 +1,5 @@
-export default function errorHandling(message, file, line, column, errorObject) {
+// @flow
+export default function errorHandling(message:string, file:string, line:number, column:number, errorObject:Object) {
   column = column || (window.event && window.event.errorCharacter);
   let stack = errorObject ? errorObject.stack : null;
 

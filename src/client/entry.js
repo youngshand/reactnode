@@ -1,3 +1,4 @@
+// @flow
 // the babel polyfill makes new features like promises avaliable to frontend code
 import 'babel-polyfill';
 

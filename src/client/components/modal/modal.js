@@ -1,3 +1,4 @@
+// @flow
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import result from 'lodash/result';
@@ -13,6 +14,8 @@ import { closeModal } from '../../actions';
  */
 class Modal extends React.Component {
 
+  modalScreen: Object;
+  
   constructor(props) {
     super(props);
 
@@ -45,7 +48,7 @@ class Modal extends React.Component {
         </div>
       );
     } else {
-      return false;
+      return null;
     }
   }
 

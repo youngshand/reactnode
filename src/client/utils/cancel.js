@@ -1,3 +1,4 @@
+// @flow
 /**
  * For more information see:
  * https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
@@ -31,7 +32,7 @@
  * @returns {Promise} obj.promise The cancelable promise object
  * @returns {function} obj.cancel The function to call when canceling the promise
  */
-export function cancelablePromise(promise) {
+export function cancelablePromise(promise:Object) {
   let hasCanceled = false;
 
   const wrappedPromise = new Promise((resolve, reject) => {
@@ -62,7 +63,7 @@ export function cancelablePromise(promise) {
  * @returns {Promise} obj.promise The cancelable promise object
  * @returns {function} obj.cancel The function to call when canceling the promise
  */
-export function cancelableRequest(request) {
+export function cancelableRequest(request:Object) {
   return cancelablePromise(new Promise((resolve, reject) => {
     request.end((err, data) => {
       if (err) {

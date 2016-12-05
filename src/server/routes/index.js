@@ -1,3 +1,4 @@
+// @flow
 import express from 'express';
 import indexController from '../controllers/indexController';
 import SitemapGenerator from '../sitemap';
@@ -10,7 +11,7 @@ const router = express.Router();
  */
 const siteMapGenerator = new SitemapGenerator();
 router.get('/sitemap.xml', (req, res) => {
-  siteMapGenerator.init(req, res);
+  return siteMapGenerator.init(req, res);
 });
 
 /* GET home page. */

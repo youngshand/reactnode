@@ -1,6 +1,6 @@
-
+// @flow
 const constants = {
-  RECEIVE_POSTs: 'RECEIVE_POSTS',
+  RECEIVE_POSTS: 'RECEIVE_POSTS',
   RECEIVE_SETTINGS: 'RECEIVE_SETTINGS',
   RECEIVE_PAGES: 'RECEIVE_PAGES',
 
@@ -16,21 +16,21 @@ const constants = {
 };
 
 
-export function receiveSettings(settings) {
+export function receiveSettings(settings:Object) {
   return {
     type: constants.RECEIVE_SETTINGS,
     settings
   };
 }
 
-export function receivePages(pages) {
+export function receivePages(pages:Object) {
   return {
     type: constants.RECEIVE_PAGES,
     pages
   };
 }
 
-export function receivePosts(posts) {
+export function receivePosts(posts:Object) {
   return {
     type: constants.RECEIVE_POSTS,
     posts
@@ -55,28 +55,28 @@ export function toggleMenu() {
   };
 }
 
-export function navigateTo(location) {
+export function navigateTo(location:Object) {
   return {
     type: constants.NAVIGATE_TO,
     location
   };
 }
 
-export function activateModal(modalTag) {
+export function activateModal(modalTag:string) {
   return {
     type: constants.ACTIVATE_MODAL,
     modalTag
   };
 }
 
-export function closeModal(modalTag){
+export function closeModal(modalTag:string){
   return {
     type: constants.CLOSE_MODAL,
     modalTag
   };
 }
 
-export function toggleModal(modalTag) {
+export function toggleModal(modalTag:string) {
   return {
     type: constants.TOGGLE_MODAL,
     modalTag

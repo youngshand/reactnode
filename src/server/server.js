@@ -1,3 +1,4 @@
+// @flow
 import app from './app';
 import { PORT, LOCALHOST } from '../config/config';
 // import updateAPI from './updateAPI';

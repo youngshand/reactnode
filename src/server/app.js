@@ -1,3 +1,4 @@
+// @flow
 /**
  * Node module imports
  */
@@ -22,7 +23,7 @@ import { ENV, DB_NAME } from '../config/config';
  * Initialise expressJS
  */
 
-const app = express();
+const app:any = express();
 
 /**
  * Connect to the MongoDB
@@ -71,7 +72,6 @@ app.use('/', routes);
 // catch all 404 and forward to error handler
 app.use((req, res) => {
 	const err = new Error('Not Found');
-	err.status = 404;
 
 	if (includes(req.get('Content-Type'), 'application/json')) {
 		// for json requests pass back 404 object which the app can handle correctly

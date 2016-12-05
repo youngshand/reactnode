@@ -1,3 +1,4 @@
+// @flow
 import _ from 'lodash';
 
 /**
@@ -5,7 +6,7 @@ import _ from 'lodash';
  *
  * Returns true if the requesting useragent
  */
-export default function isBot(userAgent) {
+export default function isBot(userAgent:string) {
   userAgent = userAgent.toLowerCase();
 
   // posible bot useragents

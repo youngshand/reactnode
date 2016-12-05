@@ -1,9 +1,13 @@
 [ignore]
-.*/dist
-.*/lib
-.*/config
-.*/node_modules
-.*/gulpfile.js
+.*/react/node_modules/.*
+.*node_modules/fbjs.*
+.*node_modules/webpack.*
 
 [include]
-.*/src
+
+[libs]
+../node_modules/fbjs/flow/include
+../node_modules/fbjs/node_modules/promise
+
+[options]
+module.system=haste

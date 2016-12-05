@@ -1,3 +1,4 @@
+// @flow
 import _ from 'lodash';
 
 const MATCH_TYPES = {
@@ -11,7 +12,7 @@ const MATCH_TYPES = {
  * @param {string} key - The key to look for when trimming
  * @param {number} padding - How much surrounding characters to include
  */
-function trim(str, key, padding) {
+function trim(str, key, padding:number = 0) {
   // padding is an optional param
   padding = _.isNumber(padding) && padding > 0 ? padding : 2;
 
@@ -113,7 +114,7 @@ function search(obj, queryString, depth = 3, path = '') {
  * @param {string} queryString - The string to find occurances of
  * @param {number} depth - How deep into objects and arrays to look
  */
-export default function (dataList, queryString, depth = 3) {
+export default function (dataList:Object[], queryString:string, depth:number = 3) {
   const matches = [];
   _.forEach(dataList, (d) => {
     const results = search(d, queryString, depth);

@@ -1,3 +1,4 @@
+// @flow
 import has from 'lodash/has';
 
 /**
@@ -5,9 +6,8 @@ import has from 'lodash/has';
  *
  * @param {string} url The url to record in the datalayer
  */
-export function pageView(url) {
+export function pageView(url: string) {
   if (has(window, 'dataLayer')) {
     window.dataLayer.push({ 'event': 'virtualPageview', 'virtualUrl': url });
   }
 }
-

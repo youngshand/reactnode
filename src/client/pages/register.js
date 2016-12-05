@@ -1,30 +1,31 @@
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import pick from 'lodash/pick';
 
-import User from '../../models/user';
+import User from '../../server/models/user';
 
 const emailRe = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 class Register extends React.Component {
 
+	inputs:Object;
+	user:Object;
 	constructor () {
 		super();
 
 		this.inputs = {};
 
 		this.state = {
-
 			formStateClass: '',
-
 			nameValid: null,
 			emailValid: null,
 			subjectValid: null,
 			messageValid: null
-		}
+		};
 
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		(this:any).handleChange = this.handleChange.bind(this);
+		(this:any).handleSubmit = this.handleSubmit.bind(this);
 
 	}
 

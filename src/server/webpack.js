@@ -1,3 +1,4 @@
+// @flow
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
 import config from '../config/webpack.config.dev';
